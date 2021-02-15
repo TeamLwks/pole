@@ -150,7 +150,7 @@ public:
    * recursively delete everything underneath said directory.
    * returns true for success
    */
-  bool deleteByName( const std::string& name );
+  bool deleteByName( const std::string& name ) const;
 
   /**
    * Returns an accumulation of information, hopefully useful for determining if the storage
@@ -193,12 +193,12 @@ public:
   /**
    * Returns the full stream name.
    */
-  std::string fullName(); 
+  std::string fullName() const; 
   
   /**
    * Returns the stream size.
    **/
-  uint64 size();
+  uint64 size() const;
 
   /**
    * Changes the stream size (note this is done automatically if you write beyond the old size.
@@ -210,7 +210,7 @@ public:
   /**
    * Returns the current read/write position.
    **/
-  uint64 tell();
+  uint64 tell() const;
 
   /**
    * Sets the read/write position.

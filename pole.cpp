@@ -1231,7 +1231,7 @@ StorageIO::StorageIO( Storage* st, const char* fname )
   filesize(0),        
   writeable(false),        
   header(new Header()),        
-  dirtree(new DirTree(1 << header->b_shift)),        
+  dirtree(new DirTree( (uint64)1 << header->b_shift)),
   bbat(new AllocTable()),        
   sbat(new AllocTable()),
   sb_blocks(),
@@ -2245,7 +2245,7 @@ bool Storage::isWriteable()
     return io->writeable;
 }
 
-bool Storage::deleteByName( const std::string& name )
+bool Storage::deleteByName( const std::string& name ) const
 {
   return io->deleteByName(name);
 }
@@ -2305,12 +2305,12 @@ Stream::~Stream()
   delete io;
 }
 
-std::string Stream::fullName()
+std::string Stream::fullName() const
 {
   return io ? io->fullName : std::string();
 }
 
-uint64 Stream::tell()
+uint64 Stream::tell() const
 {
   return io ? io->tell() : 0;
 }
@@ -2321,7 +2321,7 @@ void Stream::seek( uint64 newpos )
       io->seek(newpos);
 }
 
-uint64 Stream::size()
+uint64 Stream::size() const
 {
     if (!io)
         return 0;
